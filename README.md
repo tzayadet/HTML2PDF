@@ -1,52 +1,30 @@
-# HTML → PDF · Batch Converter
+# HTML, Markdown & Files to PDF
+
+Conversor por lotes basado en navegador para preparar documentos PDF a partir de HTML, Markdown, texto, archivos locales y URLs accesibles.
 
 [![Pages deployment](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml/badge.svg)](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml)
 
-Conversor de documentos basado en navegador para preparar y generar PDF a partir de contenido HTML, Markdown, archivos locales y direcciones web.
+**Demo:** [abrir conversor](https://tzayadet.github.io/HTML2PDF/) · **Código:** [repositorio](https://github.com/tzayadet/HTML2PDF)
 
-**Demo:** https://tzayadet.github.io/HTML2PDF/  
-**Código:** https://github.com/tzayadet/HTML2PDF
+## Funciones
 
-## Funcionalidades
-
-- Añadir contenido HTML o texto pegado.
-- Convertir contenido Markdown.
-- Incorporar archivos locales y URLs a una cola de trabajo.
-- Procesar varios elementos y revisar el estado de cada conversión.
-- Reintentar elementos con errores y consultar el historial de trabajos.
-- Configurar anchura de página, formato y opciones avanzadas de salida.
-- Generar documentos de página continua cuando el contenido lo requiere.
-- Aplicar marcas de agua y combinar documentos.
-- Descargar los PDF generados.
-
-## Uso
-
-Abre la [demo web](https://tzayadet.github.io/HTML2PDF/), selecciona el tipo de entrada, añade el contenido a la cola y ejecuta la conversión.
-
-También puedes descargar el repositorio y abrir `index.html` en un navegador moderno.
+- Entrada de HTML, texto y Markdown.
+- Cola de conversión para varios elementos.
+- Incorporación de archivos locales y URLs.
+- Vista previa y seguimiento del estado de cada trabajo.
+- Reintento de elementos fallidos.
+- Configuración de página y salida continua.
+- Marcas de agua, combinación y descarga de PDF.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript
-- html2canvas
-- jsPDF
-- pdfmake
-- html-to-pdfmake
-- Marked.js
-- PDF.js
-- JSZip
-
-Las bibliotecas se cargan desde CDN. Para disponer de todas las funciones dependientes de esas bibliotecas se necesita conexión a Internet.
+HTML5, CSS3, JavaScript, html2canvas, jsPDF, pdfmake, html-to-pdfmake, Marked.js, PDF.js y JSZip. Las bibliotecas se cargan desde CDN, por lo que algunas funciones requieren conexión a Internet.
 
 ## Privacidad y limitaciones
 
-La interfaz está diseñada para procesar contenido desde el navegador y no incorpora un backend propio. Las vistas previas y los documentos temporales se renderizan en iframes aislados sin ejecución de scripts del contenido importado. La disponibilidad de una URL externa depende de las restricciones CORS del servidor de origen; una web puede impedir que el navegador lea su contenido.
+La aplicación no incorpora backend propio. La lectura de URLs externas depende de CORS y de las políticas del servidor de origen. El contenido importado se muestra en iframes aislados sin ejecutar sus scripts. No introduzcas documentos confidenciales en páginas externas sin comprobar antes dónde se procesan y qué datos se transmiten.
 
-No introduzcas documentos confidenciales en servicios o páginas externas sin comprobar previamente dónde se procesan y qué información se transmite.
-
-## Despliegue
-
-La demo se publica como contenido estático mediante GitHub Pages. GitHub Pages no ejecuta procesos de servidor.
+GitHub Pages publica una interfaz estática; no ejecuta procesos de servidor.
 
 ## Licencia
 
