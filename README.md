@@ -1,5 +1,7 @@
 # HTML → PDF · Batch Converter
 
+[![Pages deployment](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml/badge.svg)](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml)
+
 Conversor de documentos basado en navegador para preparar y generar PDF a partir de contenido HTML, Markdown, archivos locales y direcciones web.
 
 **Demo:** https://tzayadet.github.io/HTML2PDF/  
@@ -38,7 +40,7 @@ Las bibliotecas se cargan desde CDN. Para disponer de todas las funciones depend
 
 ## Privacidad y limitaciones
 
-La interfaz está diseñada para procesar contenido desde el navegador y no incorpora un backend propio. La disponibilidad de una URL externa depende de las restricciones CORS del servidor de origen; una web puede impedir que el navegador lea su contenido.
+La interfaz está diseñada para procesar contenido desde el navegador y no incorpora un backend propio. Las vistas previas y los documentos temporales se renderizan en iframes aislados sin ejecución de scripts del contenido importado. La disponibilidad de una URL externa depende de las restricciones CORS del servidor de origen; una web puede impedir que el navegador lea su contenido.
 
 No introduzcas documentos confidenciales en servicios o páginas externas sin comprobar previamente dónde se procesan y qué información se transmite.
 
