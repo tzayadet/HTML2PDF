@@ -680,7 +680,7 @@
     <div class="preview-stage" id="previewStage">
       <div class="page-shadow-outer" id="pageShadowOuter">
         <div class="page-shadow" id="pageShadow">
-          <iframe id="preview" title="Vista previa" sandbox="allow-same-origin allow-scripts"></iframe>
+          <iframe id="preview" title="Vista previa" sandbox="allow-same-origin"></iframe>
           <div class="page-guides" id="pageGuides" aria-hidden="true"></div>
         </div>
       </div>
@@ -1476,6 +1476,9 @@
     wrap.style.left = "-99999px";
     wrap.style.top = "0";
     const iframe = document.createElement("iframe");
+    // El contenido HTML se considera no confiable: permitir acceso DOM al padre
+    // para renderizar, pero bloquear scripts y manejadores de eventos.
+    iframe.setAttribute("sandbox", "allow-same-origin");
     iframe.style.width = widthPx + "px";
     iframe.style.height = "10px";
     iframe.style.border = "0";
