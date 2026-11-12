@@ -690,7 +690,7 @@
 </main>
 
 <footer>
-  <span>Procesamiento 100% local. Ningún archivo se envía a ningún servidor. Tus preferencias se recuerdan en este navegador.</span>
+  <span>Los archivos locales se procesan en el navegador, sin backend propio. Al añadir URLs, el navegador solicita esas páginas y sus recursos; las bibliotecas se cargan desde CDN. Tus preferencias se recuerdan en este navegador.</span>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -710,6 +710,9 @@
 (function(){
   "use strict";
   const $ = (id) => document.getElementById(id);
+  const MAX_HTML_FILE_BYTES = 10 * 1024 * 1024;
+  const MAX_URL_DOCUMENT_BYTES = 5 * 1024 * 1024;
+  const URL_FETCH_TIMEOUT_MS = 15_000;
   const logEl = $("log");
   const statusPill = $("statusPill");
   const progressFill = $("progressFill");
@@ -1201,6 +1204,10 @@
         log('"' + file.name + '" no es .html/.htm, se omite', "warn");
         return;
       }
+      if (file.size > MAX_HTML_FILE_BYTES) {
+        log('"' + file.name + '" supera el límite de 10 MB y se omite', "warn");
+        return;
+      }
       const reader = new FileReader();
       reader.onload = (e) => {
         addJob(file.name, "file", e.target.result);
@@ -1455,17 +1462,61 @@
 
   async function fetchUrlJob(job){
     log("Descargando " + job.name + " …");
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), URL_FETCH_TIMEOUT_MS);
     try{
-      const res = await fetch(job.name, { mode: "cors" });
+      const parsed = new URL(job.name);
+      if (!["http:", "https:"].includes(parsed.protocol) || parsed.username || parsed.password) {
+        throw new Error("Solo se admiten URLs HTTP/HTTPS sin credenciales embebidas.");
+      }
+
+      const res = await fetch(parsed.href, {
+        mode: "cors",
+        credentials: "omit",
+        redirect: "follow",
+        signal: controller.signal
+      });
       if (!res.ok) throw new Error("HTTP " + res.status);
-      job.html = await res.text();
+
+      const declaredLength = Number(res.headers.get("content-length"));
+      if (Number.isFinite(declaredLength) && declaredLength > MAX_URL_DOCUMENT_BYTES) {
+        throw new Error("La página supera el límite de 5 MB.");
+      }
+      if (!res.body) throw new Error("El navegador no permite leer el cuerpo de la respuesta.");
+
+      const reader = res.body.getReader();
+      const chunks = [];
+      let totalBytes = 0;
+      while (true) {
+        const {done, value} = await reader.read();
+        if (done) break;
+        totalBytes += value.byteLength;
+        if (totalBytes > MAX_URL_DOCUMENT_BYTES) {
+          await reader.cancel();
+          throw new Error("La página supera el límite de 5 MB.");
+        }
+        chunks.push(value);
+      }
+
+      const bytes = new Uint8Array(totalBytes);
+      let offset = 0;
+      for (const chunk of chunks) {
+        bytes.set(chunk, offset);
+        offset += chunk.byteLength;
+      }
+      job.html = new TextDecoder("utf-8").decode(bytes);
       log("Descarga OK: " + job.name, "ok");
       return true;
     }catch(err){
       job.status = "error";
-      job.error = "CORS/red: " + err.message;
-      log('Fallo al descargar "' + job.name + '" (probable bloqueo CORS): ' + err.message, "err");
+      const message = err.name === "AbortError"
+        ? "Tiempo de espera agotado (15 s)."
+        : err.message;
+      job.error = "CORS/red: " + message;
+      log('Fallo al descargar "' + job.name + '": ' + message, "err");
       return false;
+    }finally{
+      clearTimeout(timeoutId);
     }
   }
 
