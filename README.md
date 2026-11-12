@@ -1,47 +1,42 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/WEB_UTILITY-DOCUMENT_CONVERTER-101010?style=for-the-badge&labelColor=050805&color=00FF41" alt="Document converter"/>
-  <img src="https://img.shields.io/badge/CLIENT_SIDE-BROWSER_APP-101010?style=for-the-badge&logo=javascript&logoColor=00FF41" alt="Browser app"/>
-</p>
-
 # HTML, Markdown & Files to PDF
 
-Conversor por lotes en el navegador para preparar documentos PDF a partir de HTML, Markdown, texto, archivos locales y URLs accesibles.
+A browser-based batch converter for preparing PDF documents from HTML, Markdown, text, local files and accessible URLs.
 
 <p align="center">
-  <a href="https://tzayadet.github.io/HTML2PDF/"><strong>LIVE DEMO ↗</strong></a> ·
-  <a href="https://github.com/tzayadet/HTML2PDF"><strong>SOURCE CODE</strong></a>
+  <a href="https://tzayadet.github.io/HTML2PDF/"><img src="https://img.shields.io/badge/LIVE_DEMO-OPEN-00a86b?style=flat-square" alt="Live demo"></a>
+  <a href="https://github.com/tzayadet/HTML2PDF"><img src="https://img.shields.io/badge/SOURCE-GITHUB-161b22?style=flat-square&logo=github" alt="Source"></a>
 </p>
 
 [![Pages deployment](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml/badge.svg)](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml)
 
 ## Features
 
-- Entrada de HTML, texto y Markdown.
-- Cola de conversión para varios elementos.
-- Incorporación de archivos locales y URLs accesibles.
-- Vista previa y seguimiento del estado de cada trabajo.
-- Reintento de elementos fallidos.
-- Configuración de página y salida continua.
-- Marcas de agua, combinación y descarga de PDF.
+- HTML, text and Markdown input.
+- Batch conversion queue.
+- Local file and accessible URL input.
+- Preview and per-job status.
+- Retry for failed items.
+- Page settings and continuous-page layouts.
+- Watermarks, PDF merging and download.
 
 ## Use it
 
-Abre la [demo web](https://tzayadet.github.io/HTML2PDF/) en un navegador moderno. La aplicación es estática y no necesita backend propio.
+Open the [live demo](https://tzayadet.github.io/HTML2PDF/) in a modern browser. The application is static and does not require a project backend.
 
 ## Technology
 
-HTML5, CSS3, JavaScript, html2canvas, jsPDF, pdfmake, html-to-pdfmake, Marked.js, PDF.js y JSZip. Las bibliotecas se cargan desde CDN, por lo que algunas funciones requieren conexión a Internet.
+HTML5, CSS3 and JavaScript, with html2canvas, jsPDF, pdfmake, html-to-pdfmake, Marked.js, PDF.js and JSZip. Libraries are loaded from CDNs, so some functions require an internet connection.
 
-## Privacy & limitations
+## Privacy and limitations
 
-La aplicación no incorpora backend propio. La lectura de URLs externas depende de CORS y de las políticas del servidor de origen. El contenido importado se muestra en iframes aislados sin ejecutar sus scripts.
+The application has no project backend. Access to external URLs depends on CORS and the source server's policies. Imported HTML is rendered in isolated iframes with scripts disabled.
 
-No introduzcas documentos confidenciales en páginas externas sin comprobar antes dónde se procesan y qué datos se transmiten. La aplicación está pensada para procesamiento local en el navegador; el comportamiento puede variar según el tamaño del documento y los recursos disponibles.
+Do not process confidential documents through external pages unless you have checked where the content is handled and whether any data is transmitted. Performance depends on document size and browser resources.
 
 ## Deployment
 
-Sitio estático publicado mediante GitHub Pages. Pages sirve la interfaz; la conversión se ejecuta en el navegador del usuario.
+Static browser application published through GitHub Pages. Conversion runs in the user's browser.
 
 ## License
 
-See [LICENSE](LICENSE).
+See [LICENSE](LICENSE) for the repository's licensing terms.
