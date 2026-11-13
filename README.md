@@ -33,6 +33,16 @@ The application has no project backend. Access to external URLs depends on CORS 
 
 Do not process confidential documents through external pages unless you have checked where the content is handled and whether any data is transmitted. Performance depends on document size and browser resources.
 
+## Validation
+
+The quality workflow checks JavaScript syntax, local asset references, duplicate HTML IDs and restrictive sandbox settings for the document preview iframes:
+
+```bash
+python scripts/validate_html.py
+```
+
+Requires Python 3.11+ and Node.js 22+.
+
 ## Deployment
 
 Static browser application published through GitHub Pages. Conversion runs in the user's browser.
