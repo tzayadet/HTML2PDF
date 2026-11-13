@@ -24,5 +24,13 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
-      - name: Validate HTML and inline JavaScript
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: Validate HTML, local assets and preview isolation
         run: python scripts/validate_html.py
