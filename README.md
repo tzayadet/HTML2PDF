@@ -9,6 +9,8 @@ A browser-based batch converter for preparing PDF documents from HTML, Markdown,
 
 [![Pages deployment](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml/badge.svg)](https://github.com/tzayadet/HTML2PDF/actions/workflows/static.yml)
 
+[![Quality checks](https://github.com/tzayadet/HTML2PDF/actions/workflows/quality.yml/badge.svg)](https://github.com/tzayadet/HTML2PDF/actions/workflows/quality.yml)
+
 ## Features
 
 - HTML, text and Markdown input.
