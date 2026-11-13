@@ -1,4 +1,14 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/WEB_TOOL-HTML_TO_PDF-101010?style=for-the-badge&labelColor=050805&color=00FF41" alt="HTML to PDF"/>
+  <img src="https://img.shields.io/badge/JAVASCRIPT-BROWSER_APP-101010?style=for-the-badge&logo=javascript&logoColor=00FF41" alt="JavaScript"/>
+</p>
+
 # HTML, Markdown & Files to PDF
+
+<p align="center">
+  <a href="https://tzayadet.github.io/HTML2PDF/"><strong>LIVE DEMO ↗</strong></a> ·
+  <a href="https://github.com/tzayadet/HTML2PDF"><strong>SOURCE CODE</strong></a>
+</p>
 
 A browser-based batch converter for preparing PDF documents from HTML, Markdown, text, local files and accessible URLs.
 
